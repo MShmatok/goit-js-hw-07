@@ -5,8 +5,9 @@ import { galleryItems } from './gallery-items.js';
 const ref = {
     gallery: document.querySelector('.gallery'),
 }
+const lightBoxParams = { caption: true, captionSelector: 'img', captionType: 'attr', captionsData: 'alt', captionDelay: 250, captionClass: 'center' };
 
-const galleryItemsArr = galleryItems.map((elem) => {
+const markup = galleryItems.map((elem) => {
     return `<li class="gallery__item">
    <a class="gallery__link" href="${elem.original}">
       <img class="gallery__image" src="${elem.preview}" alt="${elem.description}" />
@@ -15,6 +16,6 @@ const galleryItemsArr = galleryItems.map((elem) => {
 }).join('');
 
 
-ref.gallery.insertAdjacentHTML('beforeend', galleryItemsArr);
+ref.gallery.insertAdjacentHTML('beforeend', markup);
 
-let lightbox = new SimpleLightbox('.gallery__item a', { caption: true, captionSelector: 'img', captionType: 'attr', captionsData: 'alt', captionDelay: 250, captionClass: 'center' });
+let lightbox = new SimpleLightbox('.gallery__item a', lightBoxParams);
